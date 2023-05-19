@@ -26,26 +26,15 @@ def max_positive_subsequence(nums: Iterable) -> int:
     return max_length
 
 
-def write_csv(filename, data: Iterable) -> None:
-    with open(filename, 'w', newline='') as file:
-        writer = csv.writer(file, delimiter=',')
-        writer.writerows(data)
-
-
 if __name__ == '__main__':
     argp = ArgumentParser()
     argp.add_argument("-f", "--file", action='store')
-    argp.add_argument("-t", "--targetfile", action='store')
     args = argp.parse_args()
 
     if args.file:
         source_file = args.file
     else:
         source_file = "numbers.csv"
-    if args.targetfile:
-        target = args.targetfile
-    else:
-        target = "numbers_out.csv"
 
     nums = read_nums(source_file)
-    write_csv(target, [["max_length"], [max_positive_subsequence(nums)]])
+    print(f'max_length\n{max_positive_subsequence(nums)}')
